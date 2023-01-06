@@ -11,7 +11,8 @@ st.session_state.radio_dict = {}
 if st.session_state.radio_dict is None:
     st.session_state.radio_dict = {}
     
-google_sheet_url ="https://docs.google.com/spreadsheets/d/1PYwm0Ji38YAbDK3FHU64K0bj7MGQJfXWZGn5uI5s9zc/edit?usp=sharing"
+#google_sheet_url ="https://docs.google.com/spreadsheets/d/1PYwm0Ji38YAbDK3FHU64K0bj7MGQJfXWZGn5uI5s9zc/edit?usp=sharing"
+google_sheet_url = st.secrets["private_gsheets_url"]
 
 def convert_datatime_to_string(date):
     """
