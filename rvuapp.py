@@ -4,6 +4,7 @@ import streamlit as st
 import gspread
 import json
 import numpy as np
+from google.oauth2 import service_account
 
 st.session_state.radio_dict = {}
 if st.session_state.radio_dict is None:
@@ -21,8 +22,15 @@ def convert_datatime_to_string(date):
     #time_string = datetime_as_string(date, unit='h')
     return date_string, date_time_string
 
-def save_into_csv(date_time,cpt,wrvu):    
-    gc = gspread.service_account(filename= "credentials.json")       # type: ignore
+def save_into_csv(date_time,cpt,wrvu):  
+    credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=[
+        "https://www.googleapis.com/auth/spreadsheets",
+    ],
+    )
+    #gc = gspread.service_account(filename= "credentials.json") 
+    gc = gspread.service_account_from_dict(credentials)      # type: ignore
     sh = gc.open_by_url(google_sheet_url)    
     worksheet = sh.get_worksheet(0)
     date,time_stamp = convert_datatime_to_string(date_time)
