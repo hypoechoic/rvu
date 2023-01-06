@@ -119,7 +119,7 @@ with st.form("my_form",clear_on_submit=True):
         st.write("You selected:", get_label())
         cpt_code = get_label()
         rvu_value = get_rvu_value(cpt_code)
-        save_into_csv(np.datetime64(datetime.datetime.now()),cpt_code,rvu_value)
+        save_into_csv(np.datetime64(datetime.datetime.now(pytz.timezone("CST"))),cpt_code,rvu_value)
         #save_into_csv(np.datetime64(datetime.datetime.now()),9401,1.8)
         st.write("Data saved into Google Sheet")
 
