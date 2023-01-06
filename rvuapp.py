@@ -31,9 +31,9 @@ def save_into_csv(date_time,cpt,wrvu):
         'https://www.googleapis.com/auth/drive',
     ],
     )
-    gc = gspread.authorize(credentials)
+    #gc = gspread.authorize(credentials)
     #gc = gspread.service_account(filename= "credentials.json") 
-    gc = gspread.service_account_from_dict(credentials)      # type: ignore
+    gc = gspread.service_account_from_dict(st.secrets["gcp_service_account"])      
     sh = gc.open_by_url(google_sheet_url)    
     worksheet = sh.get_worksheet(0)
     date,time_stamp = convert_datatime_to_string(date_time)
