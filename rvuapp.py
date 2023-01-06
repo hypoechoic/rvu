@@ -27,6 +27,7 @@ def save_into_csv(date_time,cpt,wrvu):
     st.secrets["gcp_service_account"],
     scopes=[
         "https://www.googleapis.com/auth/spreadsheets",
+        'https://www.googleapis.com/auth/drive',
     ],
     )
     #gc = gspread.service_account(filename= "credentials.json") 
