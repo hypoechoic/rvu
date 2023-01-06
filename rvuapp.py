@@ -11,7 +11,6 @@ st.session_state.radio_dict = {}
 if st.session_state.radio_dict is None:
     st.session_state.radio_dict = {}
     
-#google_sheet_url ="https://docs.google.com/spreadsheets/d/1PYwm0Ji38YAbDK3FHU64K0bj7MGQJfXWZGn5uI5s9zc/edit?usp=sharing"
 google_sheet_url = st.secrets["private_gsheets_url"]
 
 def convert_datatime_to_string(date):
@@ -32,8 +31,8 @@ def save_into_csv(date_time,cpt,wrvu):
         'https://www.googleapis.com/auth/drive',
     ],
     )
-    #gc = gspread.authorize(credentials)
-    #gc = gspread.service_account(filename= "credentials.json") 
+   
+ 
     gc = gspread.service_account_from_dict(st.secrets["gcp_service_account"])      
     sh = gc.open_by_url(google_sheet_url)    
     worksheet = sh.get_worksheet(0)
