@@ -5,6 +5,7 @@ import gspread
 import json
 import numpy as np
 from google.oauth2 import service_account
+from google.auth.transport.requests import AuthorizedSession
 
 st.session_state.radio_dict = {}
 if st.session_state.radio_dict is None:
@@ -30,6 +31,7 @@ def save_into_csv(date_time,cpt,wrvu):
         'https://www.googleapis.com/auth/drive',
     ],
     )
+    conn = connect(credentials=credentials)
     #gc = gspread.service_account(filename= "credentials.json") 
     gc = gspread.service_account_from_dict(credentials)      # type: ignore
     sh = gc.open_by_url(google_sheet_url)    
