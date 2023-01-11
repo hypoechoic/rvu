@@ -76,7 +76,7 @@ def get_label():
 
 # A function to read all the data from the google sheet and return it as a dataframe
 def read_data_from_google_sheet():
-    gc = gspread.service_account_from_dict(st.secrets["gcp_service_account"]))  # type: ignore
+    gc = gspread.service_account_from_dict(st.secrets["gcp_service_account"])  # type: ignore
     sh = gc.open_by_url(google_sheet_url)
     worksheet = sh.get_worksheet(0)
     data = worksheet.get_all_values()
