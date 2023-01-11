@@ -11,10 +11,6 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 from numpy import datetime_as_string
 
-#os.environ["TZ"] = "CST"
-#t = datetime.datetime.now()
-#timezone = pytz.timezone("US/Central")
-#t_pytz = timezone.localize(t)
 
 utc_now = pytz.utc.localize(datetime.datetime.utcnow())
 t_pytz = utc_now.astimezone(pytz.timezone("US/Central"))
