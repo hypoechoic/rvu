@@ -1,7 +1,7 @@
 import datetime
 import io
 import os
-
+import pytz
 import gspread
 import numpy as np
 import pandas as pd
@@ -11,7 +11,17 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 from numpy import datetime_as_string
 
-os.environ["TZ"] = "CST"
+#os.environ["TZ"] = "CST"
+t = datetime.datetime.now()
+t_pytz = pytz.timezone("US/Central").localize(t)
+# extract year, month and day from t_pytz and store under variable local_year, local_month and local_day
+local_year = t_pytz.year
+local_month = t_pytz.month
+local_day = t_pytz.day
+
+# extract hour and minute from t_pytz and store under variable local_hour and local_minute
+local_hour = t_pytz.hour
+local_minute = t_pytz.minute
 
 st.session_state.radio_dict = {}
 if st.session_state.radio_dict is None:
@@ -191,11 +201,13 @@ dateco, timecol = st.columns(2)
 with dateco:
     date = st.date_input(
         "Date of the visit",
+        datetime.date(local_year,local_month, local_day)  # type: ignore
     )
 
 with timecol:
     time = st.time_input(
         "Time of the visit",
+        datetime.time(local_hour, local_minute),  # type: ignore
     )
 
 with st.form("my_form", clear_on_submit=True):
