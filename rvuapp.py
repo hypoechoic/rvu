@@ -196,7 +196,7 @@ st.session_state.radio_dict = {
 }
 
 st.title("RVU App")
-
+st.write(t.tzinfo)
 dateco, timecol = st.columns(2)
 with dateco:
     date = st.date_input(
