@@ -13,7 +13,11 @@ from numpy import datetime_as_string
 
 #os.environ["TZ"] = "CST"
 t = datetime.datetime.now()
-t_pytz = pytz.timezone("US/Central").localize(t)
+timezone = pytz.timezone("US/Central")
+t_pytz = timezone.localize(t)
+
+utc_now = pytz.utc.localize(datetime.datetime.utcnow())
+t_pytz = utc_now.astimezone(pytz.timezone("US/Central"))
 # extract year, month and day from t_pytz and store under variable local_year, local_month and local_day
 local_year = t_pytz.year
 local_month = t_pytz.month
