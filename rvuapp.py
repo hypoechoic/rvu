@@ -129,12 +129,9 @@ def download_report():
     # create a word document with total_wrvu and wrvu_by_cpt
     document = Document()
     document.add_heading("wRVU Report", 0)
-    document.add_paragraph(
-        "Report generated on: " + str(np.datetime64(datetime.datetime.now()))
-    )
     # Add date range used to generate the report
     document.add_paragraph(
-        "Date range: " + str(start_date) + "   to   " + str(end_date)
+        "Date range for the report: from " + str(start_date) + "   to   " + str(end_date)
     )
     document.add_heading("Total wrvu: ", 0)
     document.add_paragraph(str(total_wrvu))
