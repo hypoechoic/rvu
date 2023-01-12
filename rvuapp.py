@@ -300,8 +300,8 @@ with st.form("my_form", clear_on_submit=True):
 
 st.sidebar.title("RVU Report")
 st.sidebar.markdown("Click the button below to generate the report")
-start_date = st.sidebar.date_input("Start Date", key="start_date")
-end_date = st.sidebar.date_input("End Date", key="end_date")
+start_date = st.sidebar.date_input("Start Date",datetime.date(local_year,local_month, local_day), key="start_date")
+end_date = st.sidebar.date_input("End Date", datetime.date(local_year,local_month, local_day),key="end_date")
 gen_button = st.sidebar.button("Generate Report", key="generate_report")
 
 if gen_button:
